@@ -1,70 +1,86 @@
-import { Image, StyleSheet, Platform } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 
-export default function HomeScreen() {
+import React from 'react'
+import Create from './Login/Create'
+import SignUpScreen from './Login/SignUpScreen'
+import VerificationScreen from './Login/VerificationScreen'
+import LoginScreen from './Login/LoginScreen'
+import ShiftTrackScreen from './Login/ShiftTrackScreen'
+import ShiftManagementScreen from './Manager/ShiftManagementScreen'
+import ViewShiftScreen from './worker/ViewShiftScreen'
+import IncidentReportForm from './worker/IncidentReportForm'
+import { Button , StyleSheet, Text, View } from 'react-native'
+import { createContext, useContext, useState } from 'react';
+import S_Dashboard from './Superviser/S_Dashboard'
+import M_Dashboard from './Manager/M_Dashboard'
+import AddShiftScreen from './Superviser/AddShift'
+import W_Dashboard from './worker/Dashboard'
+import TaskDetailsScreen from './Superviser/Task_details'
+import ViewShiftScreen_Worker from './worker/ViewShiftScreen'
+import Worker_Home from './worker/Worker_Home'
+import Worker_Message from './worker/W_message'
+import M_Alerts from './Manager/M_Alerts'
+import SMPHomeScreen from './SMP/Smp_Home'
+import RiskDashboard from './SMP/Risk_Dash'
+import HazardInformationScreen from './SMP/Hazard_info'
+import AddHazard from './SMP/Add_hazards'
+import ViewShiftScreen_S from './Superviser/View_shift'
+import Erp_Dashboard from './Manager/Erp_dash'
+import ComplianceScreen from './Superviser/Compliences'
+import { UserContext } from './Login/UserContext';
+import AddShiftScreen_M from './Manager/Add_Shift_M'
+import ShiftManagementScreen_M from './Manager/Edit_shift'
+import EmployeeForm_M from './Manager/Add_user'
+
+export default function index() {
+  const [user, setUser] = useState(null);
+  const NavigationContext = createContext();
+    const [currentScreen, setCurrentScreen] = useState('shifttrack');
+  
+    const navigateTo = (screen) => {
+      setCurrentScreen(screen);
+    };
+
+  
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+    <NavigationContext.Provider value={{ navigateTo }}>
+
+    <UserContext.Provider value={{ user, setUser }}>
+     <View style={{ flex: 1 }}>
+     {currentScreen === 'login' && <LoginScreen navigateTo={navigateTo} />}
+     {currentScreen === 'signup' && <SignUpScreen navigateTo={navigateTo} />}
+     {currentScreen === 'verify' && <VerificationScreen navigateTo={navigateTo} />}
+     {currentScreen === 'shifttrack' && <ShiftTrackScreen navigateTo={navigateTo} />}
+     {currentScreen === 'Supervisor' && <S_Dashboard navigateTo={navigateTo} />}
+     {currentScreen === 'Manager' && <M_Dashboard navigateTo={navigateTo} />}
+     {currentScreen === 'Worker' && <W_Dashboard navigateTo={navigateTo} />}
+     {currentScreen === 'shiftmanagement' && <ShiftManagementScreen navigateTo={navigateTo} />}
+
+     {currentScreen === 'addshift' && <AddShiftScreen navigateTo={navigateTo} />}
+     {currentScreen === 'taskdetails' && <TaskDetailsScreen navigateTo={navigateTo} />}
+     {currentScreen === 'viewshift' && <ViewShiftScreen navigateTo={navigateTo} />}
+     {currentScreen === 'viewshift_w' && <ViewShiftScreen_Worker navigateTo={navigateTo} />}
+     {currentScreen === 'w_home' && <Worker_Home navigateTo={navigateTo} />}
+     {currentScreen === 'w_message' && <Worker_Message navigateTo={navigateTo} />}
+     {currentScreen === 'm_alerts' && <M_Alerts navigateTo={navigateTo} />}
+     {currentScreen === 'smp' && <SMPHomeScreen navigateTo={navigateTo} />}
+     {currentScreen === 'risk_d' && <RiskDashboard navigateTo={navigateTo} />}
+     {currentScreen === 'harzards' && <HazardInformationScreen navigateTo={navigateTo} />}
+     {currentScreen === 'addharzards' && <AddHazard navigateTo={navigateTo} />}
+ 
+     {currentScreen === 'incident_r' && <IncidentReportForm navigateTo={navigateTo} />}
+     {currentScreen === 's_viewshift' && <ViewShiftScreen_S navigateTo={navigateTo} />}
+     {currentScreen === 'erp' && <Erp_Dashboard navigateTo={navigateTo} />}
+     {currentScreen === 'addshift_m' && <AddShiftScreen_M navigateTo={navigateTo} />}
+     {currentScreen === 'edit_shift_m' && <ShiftManagementScreen_M navigateTo={navigateTo} />}
+     {currentScreen === 'add_user_m' && <EmployeeForm_M navigateTo={navigateTo} />}
+
+ 
+     </View>
+     </UserContext.Provider>
+    
+ </NavigationContext.Provider>
+  )
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+const styles = StyleSheet.create({})
