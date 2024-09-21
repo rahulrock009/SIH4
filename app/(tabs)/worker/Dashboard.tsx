@@ -20,8 +20,8 @@ const  W_Dashboard = ({navigateTo}) => {
       </View>
 
       <View style={styles.welcomeSection}>
-        <Text style={styles.welcomeText} onPress={()=>navigateTo('w_home')} >Welcome!</Text>
-        <Text style={styles.welcomeSubText}>
+        <Text style={styles.welcomeText} onPress={()=>navigateTo('login')} >Welcome!</Text>
+        <Text style={styles.welcomeSubText}  onPress={()=>navigateTo('login')}>
           Your hub for real-time updates, safety tracking, and efficient work management
         </Text>
         <TouchableOpacity style={styles.viewShiftButton} onPress={()=>navigateTo('viewshift_w')}>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    marginLeft:250,
+    marginLeft:210,
     marginTop:20,
   },
   userInfo: {
@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     margin: 20,
     marginTop:-50,
+    alignItems:'center'
   },
   welcomeText: {
     fontSize: 24,
@@ -175,6 +176,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2C3E50',
     borderRadius: 30,
     alignItems: 'center',
+    width:'40%'
   },
   viewShiftButtonText: {
     color: '#FFF',

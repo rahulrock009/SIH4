@@ -14,21 +14,25 @@ const EmployeeForm_M = ({ navigateTo }) => {
     const [role, setRole] = useState('');
     const [shifter_status, setShifterStatus] = useState('');
     const [work_type, setWorkType] = useState('');
+    const [worker_email, setWorker_email] = useState('');
+    const [worker_password, setWorker_password] = useState('');
 
     const handleAdd = () => {
         if (user) {
-            axios.post('http://localhost:3000/adduser', { // Ensure API endpoint is correct
+            axios.post('http://localhost:3000/adduser', {
                 userId: user._id,
                 emp_id,
                 emp_name,
                 emp_age,
                 role,
                 shifter_status,
-                work_type
+                work_type,
+                worker_email,
+                worker_password,
             })
             .then((res) => {
                 console.log('Employee added:', res.data);
-                navigateTo('Manager'); // Navigate to the next screen
+                navigateTo('Manager');
             })
             .catch((err) => {
                 console.log('Error adding employee:', err);
@@ -46,7 +50,7 @@ const EmployeeForm_M = ({ navigateTo }) => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.title}>Employee Report</Text>
+            <Text style={styles.title}>Add Users</Text>
 
             <View style={styles.inputRow}>
                 <Text style={styles.label}>EMP ID:</Text>
@@ -110,6 +114,27 @@ const EmployeeForm_M = ({ navigateTo }) => {
                 />
             </View>
 
+            <View style={styles.inputRow}>
+                <Text style={styles.label}>Work Email:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter Worker Email"
+                    value={worker_email}
+                    onChangeText={setWorker_email}
+                />
+            </View>
+
+            <View style={styles.inputRow}>
+                <Text style={styles.label}>Work Password:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter Work Password"
+                    value={worker_password}
+                    onChangeText={setWorker_password}
+                    secureTextEntry={true}
+                />
+            </View>
+
             <TouchableOpacity style={styles.button} onPress={handleAdd}>
                 <Text style={styles.buttonText}>Save to Log-book</Text>
             </TouchableOpacity>
@@ -119,49 +144,58 @@ const EmployeeForm_M = ({ navigateTo }) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 20,
-        paddingHorizontal: 10,
+        paddingVertical: 5, // Add more space at the top and bottom
+        paddingHorizontal: -10,
         alignItems: 'center',
         backgroundColor: '#4f5b77',
         borderRadius: 15,
-        width: '100%',
-        maxWidth: Platform.OS === 'web' ? '60%' : '95%',
+        width: '150%',
+        maxWidth: Platform.OS === 'web' ? '80%' : '95%',
+        maxHeight: Platform.OS === 'web' ? '400%' : '95%',
         alignSelf: 'center',
         flex: 1,
+        marginTop:"1%",
+        height:'200%',
+        paddingBottom:100,
+        
+        
+        
     },
     title: {
-        fontSize: width < 350 ? 20 : 24,
+        fontSize: width < 350 ? 18 : 22,
         fontWeight: 'bold',
         color: '#fff',
-        marginBottom: 20,
+        marginBottom: 20, // Adjust for better top-bottom spacing
     },
     inputRow: {
         width: '100%',
         marginBottom: 15,
+        alignItems: 'center',
     },
     label: {
-        fontSize: width < 350 ? 14 : 16,
+        fontSize: width < 350 ? 13 : 15,
         color: '#fff',
         marginBottom: 5,
     },
     input: {
         backgroundColor: '#e0e0e0',
         borderRadius: 5,
-        paddingHorizontal: 10,
-        paddingVertical: Platform.OS === 'web' ? 8 : 10,
-        height: Platform.OS === 'web' ? 40 : 50,
-        fontSize: width < 350 ? 14 : 16,
+        paddingHorizontal: 8,
+        paddingVertical: Platform.OS === 'web' ? 6 : 8,
+        height: Platform.OS === 'web' ? 35 : 40,
+        width: '65%',  // Reduce the width of input fields
+        fontSize: width < 350 ? 13 : 15,
     },
     button: {
         marginTop: 20,
         backgroundColor: '#7c818c',
-        paddingVertical: 15,
-        paddingHorizontal: width < 350 ? 30 : 60,
+        paddingVertical: 12,
+        paddingHorizontal: width < 350 ? 25 : 45,
         borderRadius: 10,
         alignSelf: 'center',
     },
     buttonText: {
-        fontSize: width < 350 ? 16 : 18,
+        fontSize: width < 350 ? 14 : 16,
         color: '#fff',
         textAlign: 'center',
     },

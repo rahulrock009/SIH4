@@ -9,13 +9,16 @@ const ShiftTrackScreen = ({navigateTo}) => {
     <View style={styles.container}>
       <View style={styles.content}>
       <Image
-  source={require('C:/Users/Home/Desktop/R_na5/myapp/assets/images/coal-pit-workers-overalls-digging-heaps-coal-with-spades-near-carts-truck-smoking-plant-pipes-vector-i[2].png')}
+ // source={require('C:/Users/Home/Desktop/R_na5/myapp/assets/images/coal-pit-workers-overalls-digging-heaps-coal-with-spades-near-carts-truck-smoking-plant-pipes-vector-i[2].png')}
+ source={{ uri: 'https://png.pngtree.com/png-vector/20230906/ourmid/pngtree-coal-miner-worker-with-shovel-digging-png-image_9991028.png' }}
   style={styles.image}
   resizeMode="contain"
-/>
-        <Text style={styles.title}>Welcome to ShiftTrack</Text>
+/>       <Text style={styles.title2}>Welcome</Text>
+        <Text style={styles.title}>SafeTrak</Text>
+        
         <Text style={styles.description}>
-          Efficiently manages shift scheduling and tracking in coal mines, prioritizing safety compliance, labor management, and operational continuity.
+         Your Safety , Our Priority. 
+
         </Text>
       </View>
       <View style={styles.buttonContainer}  onPress={()=>navigateTo('login')}>
@@ -42,36 +45,50 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: '60%', // This makes the image responsive
+    width: '130%', // This makes the image responsive
     height: undefined,
     aspectRatio: 1,
     marginBottom: 100,
+    marginTop:60,
+    position:'relative',
+    top:50
   },
   title: {
-    fontSize: 24,
+    fontSize: 35,
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
     
   },
+  title2: {
+    fontSize: 20,
+    fontWeight: 400,
+    color: '#fff',
+    textAlign: 'center',
+    
+  },
   description: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#fff',
     textAlign: 'center',
     marginVertical: 10,
     paddingHorizontal: 20,
+    marginBottom:100,
+    
   },
   buttonContainer: {
-    padding: 16,
+  height:50,
+  width:50,
     backgroundColor: '#fff',
-    borderRadius: 50,
+    borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 32, // Add some margin for spacing at the bottom
+    marginBottom: 30, // Add some margin for spacing at the bottom
   },
   button: {
-    fontSize: 24,
+    fontSize: 32,
     color: '#4A4A4A',
+    marginBottom: 9,
   },
 });
 

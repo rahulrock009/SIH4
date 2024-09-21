@@ -226,6 +226,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopWidth: 1,
     borderColor: '#ccc',
+   
+    
   },
   navItem: {
     fontSize: 16,
